@@ -242,7 +242,7 @@ npx prisma generate
 
 ## Future Improvements
 
-If you had more time, here's what you could improve:
+If I had more time, here's what I could have improved:
 
 ### Security Enhancements
 - [ ] Email verification before account activation
@@ -283,40 +283,6 @@ If you had more time, here's what you could improve:
 - [ ] Dark mode
 - [ ] Accessibility improvements (ARIA labels, keyboard navigation)
 
-## Learnings & Concepts Explained
-
-### Why Next.js App Router?
-
-The App Router uses React Server Components by default, which means:
-- Components run on the server (faster, no JavaScript sent to client)
-- Direct database access without API routes
-- Better SEO and performance
-- Route groups for organization
-
-### Why JWT Sessions?
-
-JWT (JSON Web Tokens) are:
-- Stateless (no database lookup needed)
-- Fast (no database query per request)
-- Scalable (works across multiple servers)
-- Secure (signed and optionally encrypted)
-
-### Why bcrypt for Passwords?
-
-bcrypt:
-- Automatically handles salting
-- Slow by design (prevents brute force)
-- Industry standard
-- Built-in comparison function
-
-### Why Prisma?
-
-Prisma provides:
-- Type-safe database queries
-- Automatic migrations
-- Great developer experience
-- Prevents SQL injection
-- Works with multiple databases
 
 ## License
 
