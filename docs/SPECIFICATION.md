@@ -191,43 +191,7 @@ enum Role {
 - Email is unique to prevent duplicate accounts
 - Default role is USER (admin must be set manually in database)
 
-## Timeline
 
-### Sprint 1: Project Setup (Week 1)
-- Initialize Next.js project with TypeScript
-- Install and configure dependencies
-- Set up Prisma with PostgreSQL
-- Create database schema
-- Generate Prisma client
-
-**Deliverables**: Working project structure, database connection
-
-### Sprint 2: Authentication Flow (Week 2)
-- Configure NextAuth.js
-- Implement registration API endpoint
-- Build login and register pages
-- Set up session management
-- Test authentication flows
-
-**Deliverables**: Users can register and login
-
-### Sprint 3: Authorization & Protected Routes (Week 3)
-- Create middleware for route protection
-- Implement role-based access control
-- Build protected dashboard page
-- Build admin-only page
-- Test authorization logic
-
-**Deliverables**: Protected routes with role-based access
-
-### Sprint 4: Polish & Documentation (Week 4)
-- Improve UI/UX
-- Add error handling
-- Write documentation (Spec, Architecture, README)
-- Code review and refactoring
-- Final testing
-
-**Deliverables**: Complete, documented, production-ready system
 
 ## Success Criteria
 
