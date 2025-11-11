@@ -66,7 +66,7 @@ export const authOptions: NextAuthOptions = {
       // This makes it available in components via useSession()
       if (session.user) {
         session.user.id = token.id as string
-        session.user.role = token.role as string
+        session.user.role = token.role as 'USER' | 'ADMIN'
       }
       return session
     }

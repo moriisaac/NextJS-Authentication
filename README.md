@@ -45,21 +45,40 @@ cp .env.example .env
 Edit `.env` and add your configuration:
 
 ```env
-# Database
-DATABASE_URL="postgresql://username:password@localhost:5432/alovate_auth?schema=public"
+# Docker PostgreSQL Configuration (for docker-compose)
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=your-secure-password-here
+POSTGRES_DB=alovate_auth
+POSTGRES_PORT=5433
+
+# Database Connection String
+# Use the same credentials as above for Docker setup
+DATABASE_URL="postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@localhost:${POSTGRES_PORT}/${POSTGRES_DB}?schema=public"
 
 # NextAuth
 NEXTAUTH_URL="http://localhost:3000"
 NEXTAUTH_SECRET="your-secret-key-here"
 ```
 
-**Important**: 
-- Replace `username`, `password`, and `alovate_auth` with your PostgreSQL credentials
-- Generate a secure `NEXTAUTH_SECRET` (you can use: `openssl rand -base64 32`)
+**Important Security Notes**: 
+- **Never use default passwords in production!** Generate strong, unique passwords
+- Replace `your-secure-password-here` with a strong password (use: `openssl rand -base64 32`)
+- Generate a secure `NEXTAUTH_SECRET` (use: `openssl rand -base64 32`)
+- The default values in docker-compose.yml are for development only
+- For production, always use environment variables with strong credentials
 
 ### 4. Set Up the Database
 
-Create a PostgreSQL database:
+**Option A: Using Docker (Recommended for Development)**
+
+```bash
+# Start PostgreSQL container with docker-compose
+docker-compose up -d
+
+# The database will be created automatically with the credentials from .env
+```
+
+**Option B: Using Local PostgreSQL**
 
 ```bash
 # Using psql
@@ -172,11 +191,17 @@ You can create test users via the registration page or directly in the database:
 
 ## Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `DATABASE_URL` | PostgreSQL connection string | Yes |
-| `NEXTAUTH_URL` | Your app's URL (http://localhost:3000 for dev) | Yes |
-| `NEXTAUTH_SECRET` | Secret key for JWT signing | Yes |
+| Variable | Description | Required | Default |
+|----------|-------------|----------|---------|
+| `POSTGRES_USER` | PostgreSQL username (for Docker) | No | `postgres` |
+| `POSTGRES_PASSWORD` | PostgreSQL password (for Docker) | No* | `postgres` |
+| `POSTGRES_DB` | PostgreSQL database name (for Docker) | No | `alovate_auth` |
+| `POSTGRES_PORT` | PostgreSQL port (for Docker) | No | `5433` |
+| `DATABASE_URL` | PostgreSQL connection string | Yes | - |
+| `NEXTAUTH_URL` | Your app's URL (http://localhost:3000 for dev) | Yes | - |
+| `NEXTAUTH_SECRET` | Secret key for JWT signing | Yes | - |
+
+\* **Security Warning**: The default password is for development only. Always set a strong password in production!
 
 ## Available Scripts
 
@@ -204,13 +229,16 @@ This implementation includes:
 - ✅ SQL injection prevention (Prisma parameterized queries)
 - ✅ Type safety (TypeScript)
 
-**For Production**:
-- Use environment variables for all secrets
+**For Production This is to be adhered to**:
+- **Change all default passwords** - Never use `postgres`/`postgres` in production
+- Use environment variables for all secrets (never commit `.env` files)
+- Generate strong passwords using `openssl rand -base64 32`
 - Enable HTTPS
 - Set secure cookie flags
 - Implement rate limiting
 - Add email verification
 - Consider 2FA for admin accounts
+- Use a secrets management service (AWS Secrets Manager, HashiCorp Vault, etc.)
 
 ## Troubleshooting
 
@@ -286,9 +314,11 @@ If I had more time, here's what I could have improved:
 
 ## License
 
-This project is created for the ALOVATE Tech Lead Task.
+This project is created by Mori Isaac Wesonga
 
 ## Support
+
+
 
 For questions or issues, refer to:
 - [Next.js Documentation](https://nextjs.org/docs)
