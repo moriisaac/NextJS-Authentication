@@ -192,6 +192,43 @@ enum Role {
 - Default role is USER (admin must be set manually in database)
 
 
+**Total Duration: 16 hours**
+
+### Sprint 1: Project Setup (3 hours)
+- Initialize Next.js project with TypeScript
+- Install and configure dependencies
+- Set up Prisma with PostgreSQL
+- Create database schema
+- Generate Prisma client
+
+**Deliverables**: Working project structure, database connection
+
+### Sprint 2: Authentication Flow (5 hours)
+- Configure NextAuth.js
+- Implement registration API endpoint
+- Build login and register pages
+- Set up session management
+- Test authentication flows
+
+**Deliverables**: Users can register and login
+
+### Sprint 3: Authorization & Protected Routes (5 hours)
+- Create middleware for route protection
+- Implement role-based access control
+- Build protected dashboard page
+- Build admin-only page
+- Test authorization logic
+
+**Deliverables**: Protected routes with role-based access
+
+### Sprint 4: Polish & Documentation (3 hours)
+- Improve UI/UX
+- Add error handling
+- Write documentation (Spec, Architecture, README)
+- Code review and refactoring
+- Final testing
+
+**Deliverables**: Complete, documented, production-ready system
 
 ## Success Criteria
 
