@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+/app/generated/prisma
+
+# Exclude review documents
+docs/PROJECT_REVIEW.md
+docs/QUICK_REFERENCE.md
